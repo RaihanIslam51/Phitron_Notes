@@ -284,8 +284,8 @@ Logical Operator ব্যবহার করা হয় **একাধিক শ
 
 | Operator | নাম | কাজ |
 |--------|------|------|
-| `&&` | Logical AND | দুইটিই true হলে true |
-| `||` | Logical OR | একটি true হলেই true |
+| `&&` | Logical AND | দুইটিই true হলে true ,একটি true হলেই flase |
+| `//` | Logical OR | একটি true হলেই true, দুইটিই flase হলে false  |
 | `!` | Logical NOT | true কে false করে |
 
 উদাহরণ:
