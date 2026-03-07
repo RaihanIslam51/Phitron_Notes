@@ -310,3 +310,193 @@ C++ Operator তিন ধরনের:
 3. **Logical Operator** → একাধিক শর্ত যাচাই করার জন্য
 
 
+# C++ Conditional Statement (Condition / শর্ত)
+
+**Conditional Statement** ব্যবহার করা হয় যখন কোনো **শর্ত (condition)** অনুযায়ী আলাদা আলাদা কাজ করতে হয়।
+
+উদাহরণ  
+যদি বৃষ্টি হয় → ছাতা নিবো  
+না হলে → বাইরে যাবো
+
+- `if`
+- `else if`
+- `else`
+- `nested if`
+
+---
+
+# 1️⃣ if Statement
+
+`if` ব্যবহার করা হয় যখন **একটি শর্ত সত্য (true) হলে কোনো কাজ করতে হবে**।
+
+### Syntax
+
+```cpp
+if(condition)
+{
+    code
+}
+```
+
+### Example
+
+```cpp
+int age = 20;
+
+if(age >= 18)
+{
+    cout << "You are adult";
+}
+```
+
+রাহিম সিনেমা দেখতে যাবে।  
+সিনেমা হলে ঢুকতে হলে বয়স **১৮ বা তার বেশি হতে হবে**।
+
+```
+যদি বয়স ≥ 18 হয় → সিনেমা দেখতে পারবে
+```
+
+---
+
+# 2️⃣ if else Statement
+
+যখন **শর্ত সত্য হলে এক কাজ এবং মিথ্যা হলে অন্য কাজ করতে হয়** তখন `if else` ব্যবহার করা হয়।
+
+### Syntax
+
+```cpp
+if(condition)
+{
+    code
+}
+else
+{
+    code
+}
+```
+
+### Example
+
+```cpp
+int age = 15;
+
+if(age >= 18)
+{
+    cout << "You can vote";
+}
+else
+{
+    cout << "You cannot vote";
+}
+```
+
+ভোট দেওয়ার জন্য বয়স **১৮ বছর হতে হবে**।
+
+```
+যদি বয়স ≥ 18 → ভোট দিতে পারবে  
+না হলে → ভোট দিতে পারবে না
+```
+
+---
+
+# 3️⃣ else if Statement
+
+যখন **একাধিক শর্ত পরীক্ষা করতে হয়** তখন `else if` ব্যবহার করা হয়।
+
+### Syntax
+
+```cpp
+if(condition1)
+{
+}
+else if(condition2)
+{
+}
+else
+{
+}
+```
+
+### Example
+
+```cpp
+int marks = 75;
+
+if(marks >= 80)
+{
+    cout << "Grade A";
+}
+else if(marks >= 60)
+{
+    cout << "Grade B";
+}
+else
+{
+    cout << "Fail";
+}
+```
+
+একটি স্কুলে মার্কস অনুযায়ী গ্রেড দেওয়া হয়।
+
+```
+৮০ বা বেশি → Grade A  
+৬০ বা বেশি → Grade B  
+এর নিচে → Fail
+```
+
+---
+
+# 4️⃣ Nested if (Nested Condition)
+
+যখন **একটি if এর ভিতরে আরেকটি if থাকে**, তখন তাকে **Nested if** বলে।
+
+### Syntax
+
+```cpp
+if(condition1)
+{
+    if(condition2)
+    {
+        code
+    }
+}
+```
+
+### Example
+
+```cpp
+int age = 20;
+bool ticket = true;
+
+if(age >= 18)
+{
+    if(ticket == true)
+    {
+        cout << "You can enter cinema hall";
+    }
+}
+```
+
+সিনেমা হলে ঢুকতে দুইটা শর্ত আছে:
+
+```
+১. বয়স ≥ 18
+২. টিকেট থাকতে হবে
+```
+
+দুইটিই সত্য হলে → ঢুকতে পারবে।
+
+---
+
+# সহজভাবে মনে রাখো
+
+| Statement | কাজ |
+|------|------|
+| `if` | একটি শর্ত পরীক্ষা করে |
+| `if else` | true হলে এক কাজ, false হলে অন্য কাজ |
+| `else if` | অনেক শর্ত পরীক্ষা করে |
+| `nested if` | একটি if এর ভিতরে আরেকটি if |
+
+---
+
+
