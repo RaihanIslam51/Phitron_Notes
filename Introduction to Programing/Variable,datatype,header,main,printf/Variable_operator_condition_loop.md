@@ -498,6 +498,7 @@ if(age >= 18)
 | `nested if` | একটি if এর ভিতরে আরেকটি if |
 
 ---
+# C++ Loop (লুপ)
 
 **Loop** ব্যবহার করা হয় যখন একই কাজ **বারবার করতে হয়**।
 
@@ -765,6 +766,228 @@ Output
 | `do while` | কমপক্ষে একবার execute |
 | `break` | loop বন্ধ করে |
 | `continue` | একটি step skip করে |
+
+---
+# C++ Increment এবং Decrement Operator
+
+Increment এবং Decrement operator ব্যবহার করা হয় **কোনো variable এর মান বাড়ানো বা কমানোর জন্য**।
+
+- `++` → Increment (১ বাড়ায়)
+- `--` → Decrement (১ কমায়)
+
+---
+
+# 1️⃣ Increment Operator (++)
+
+Increment operator variable এর মান **১ বাড়িয়ে দেয়**।
+
+Example
+
+```cpp
+int a = 5;
+a++;
+cout << a;
+```
+
+Output
+
+```
+6
+```
+
+---
+
+# 2️⃣ Decrement Operator (--)
+
+Decrement operator variable এর মান **১ কমিয়ে দেয়**।
+
+Example
+
+```cpp
+int a = 5;
+a--;
+cout << a;
+```
+
+Output
+
+```
+4
+```
+
+---
+
+# Increment এবং Decrement এর দুই ধরনের ব্যবহার
+
+1. **Pre Increment / Pre Decrement**
+2. **Post Increment / Post Decrement**
+
+---
+
+# 3️⃣ Pre Increment (++a)
+
+এখানে **আগে value বাড়বে তারপর ব্যবহার হবে**।
+
+### Example
+
+```cpp
+int a = 5;
+
+cout << ++a;
+```
+
+Explanation
+
+```
+a = 5
+++a → আগে 6 হবে তারপর print হবে
+```
+
+Output
+
+```
+6
+```
+
+---
+
+# 4️⃣ Post Increment (a++)
+
+এখানে **আগে value ব্যবহার হবে তারপর বাড়বে**।
+
+### Example
+
+```cpp
+int a = 5;
+
+cout << a++;
+```
+
+Explanation
+
+```
+print হবে 5
+তারপর a = 6 হবে
+```
+
+Output
+
+```
+5
+```
+
+---
+
+# 5️⃣ Pre Decrement (--a)
+
+এখানে **আগে value কমবে তারপর ব্যবহার হবে**।
+
+### Example
+
+```cpp
+int a = 5;
+
+cout << --a;
+```
+
+Explanation
+
+```
+a = 5
+--a → আগে 4 হবে তারপর print হবে
+```
+
+Output
+
+```
+4
+```
+
+---
+
+# 6️⃣ Post Decrement (a--)
+
+এখানে **আগে value ব্যবহার হবে তারপর কমবে**।
+
+### Example
+
+```cpp
+int a = 5;
+
+cout << a--;
+```
+
+Explanation
+
+```
+print হবে 5
+তারপর a = 4 হবে
+```
+
+Output
+
+```
+5
+```
+
+---
+
+# Loop এ Increment এবং Decrement
+
+### Increment Loop
+
+```cpp
+for(int i = 1; i <= 5; i++)
+{
+    cout << i << " ";
+}
+```
+
+Output
+
+```
+1 2 3 4 5
+```
+
+---
+
+### Decrement Loop
+
+```cpp
+for(int i = 5; i >= 1; i--)
+{
+    cout << i << " ";
+}
+```
+
+Output
+
+```
+5 4 3 2 1
+```
+
+---
+
+# Quick Difference
+
+| Operator | কাজ |
+|------|------|
+| `++a` | আগে বাড়ে তারপর ব্যবহার |
+| `a++` | আগে ব্যবহার তারপর বাড়ে |
+| `--a` | আগে কমে তারপর ব্যবহার |
+| `a--` | আগে ব্যবহার তারপর কমে |
+
+---
+
+# সহজভাবে মনে রাখো
+
+```
+Pre (++a / --a)
+→ আগে change হবে
+
+Post (a++ / a--)
+→ পরে change হবে
+```
 
 ---
 
