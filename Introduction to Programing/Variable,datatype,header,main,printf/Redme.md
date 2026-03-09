@@ -499,4 +499,273 @@ if(age >= 18)
 
 ---
 
+**Loop** ব্যবহার করা হয় যখন একই কাজ **বারবার করতে হয়**।
+
+উদাহরণ  
+১ থেকে ১০ পর্যন্ত সংখ্যা print করতে চাইলে  
+১০ বার `cout` লিখতে হবে।  
+Loop ব্যবহার করলে **এক লাইনে কাজ করা যায়**।
+
+---
+
+# C++ এ Loop এর ধরন
+
+- `for loop`
+- `while loop`
+- `do while loop`
+
+---
+
+# 1️⃣ for Loop
+
+যখন আমরা জানি **কতবার loop চলবে** তখন `for loop` ব্যবহার করি।
+
+### Syntax
+
+```cpp
+for(initialization; condition; update)
+{
+    code
+}
+```
+
+### Example
+
+```cpp
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    for(int i = 1; i <= 5; i++)
+    {
+        cout << i << " ";
+    }
+
+    return 0;
+}
+```
+
+Output
+
+```
+1 2 3 4 5
+```
+
+---
+
+# 2️⃣ while Loop
+
+যখন **loop কতবার চলবে আগে জানা থাকে না** তখন `while loop` ব্যবহার করা হয়।
+
+### Syntax
+
+```cpp
+while(condition)
+{
+    code
+}
+```
+
+### Example
+
+```cpp
+int i = 1;
+
+while(i <= 5)
+{
+    cout << i << " ";
+    i++;
+}
+```
+
+---
+
+# 3️⃣ do while Loop
+
+`do while` loop এ **কমপক্ষে একবার code execute হয়**।
+
+### Syntax
+
+```cpp
+do
+{
+    code
+}
+while(condition);
+```
+
+### Example
+
+```cpp
+int i = 1;
+
+do
+{
+    cout << i << " ";
+    i++;
+}
+while(i <= 5);
+```
+
+---
+
+# Loop এর ভিতরে এবং বাইরে Print
+
+### Loop এর ভিতরে Print
+
+যদি `cout` loop এর ভিতরে থাকে  
+তাহলে **প্রতিবার loop চললে output দেখাবে**।
+
+```cpp
+for(int i=1;i<=5;i++)
+{
+    cout << i << endl;
+}
+```
+
+---
+
+### Loop এর বাইরে Print
+
+যদি `cout` loop এর বাইরে থাকে  
+তাহলে **loop শেষ হওয়ার পরে একবার output দেখাবে**।
+
+```cpp
+int sum = 0;
+
+for(int i=1;i<=5;i++)
+{
+    sum = sum + i;
+}
+
+cout << sum;
+```
+
+---
+
+# Even Number Example
+
+Even number মানে **২ দিয়ে ভাগ যায়**।
+
+```cpp
+for(int i=1;i<=10;i++)
+{
+    if(i%2==0)
+    {
+        cout << i << " ";
+    }
+}
+```
+
+Output
+
+```
+2 4 6 8 10
+```
+
+---
+
+# Reverse Number Example
+
+১০ থেকে ১ পর্যন্ত উল্টোভাবে print করা।
+
+```cpp
+for(int i=10;i>=1;i--)
+{
+    cout << i << " ";
+}
+```
+
+Output
+
+```
+10 9 8 7 6 5 4 3 2 1
+```
+
+---
+
+# Sum Example
+
+১ থেকে ১০ পর্যন্ত সব সংখ্যা যোগ।
+
+```cpp
+int sum = 0;
+
+for(int i=1;i<=10;i++)
+{
+    sum = sum + i;
+}
+
+cout << sum;
+```
+
+Output
+
+```
+55
+```
+
+---
+
+# Break Statement
+
+`break` ব্যবহার করলে **loop সাথে সাথে বন্ধ হয়ে যায়**।
+
+```cpp
+for(int i=1;i<=10;i++)
+{
+    if(i==5)
+    {
+        break;
+    }
+
+    cout << i << " ";
+}
+```
+
+Output
+
+```
+1 2 3 4
+```
+
+---
+
+# Continue Statement
+
+`continue` ব্যবহার করলে **একটি step skip করে পরের step এ যায়**।
+
+```cpp
+for(int i=1;i<=5;i++)
+{
+    if(i==3)
+    {
+        continue;
+    }
+
+    cout << i << " ";
+}
+```
+
+Output
+
+```
+1 2 4 5
+```
+
+---
+
+# সহজভাবে মনে রাখো
+
+| Concept | কাজ |
+|------|------|
+| `for loop` | নির্দিষ্ট সংখ্যক বার loop |
+| `while loop` | condition true থাকা পর্যন্ত |
+| `do while` | কমপক্ষে একবার execute |
+| `break` | loop বন্ধ করে |
+| `continue` | একটি step skip করে |
+
+---
+
 
