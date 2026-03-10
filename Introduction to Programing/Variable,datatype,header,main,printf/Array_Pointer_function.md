@@ -80,6 +80,134 @@ for(int i=0;i<5;i++)
     cout << arr[i] << " ";
 }
 ```
+# C++ Array Memory Address
+
+কম্পিউটারের মেমোরিতে প্রতিটি data একটি নির্দিষ্ট **address** এ সংরক্ষণ করা থাকে।  
+Array এর প্রতিটি element **continuous memory location** এ থাকে।
+
+অর্থাৎ array এর সব value **একটার পর একটা memory address এ রাখা হয়**।
+
+---
+
+# Example Array
+
+```cpp
+int arr[5] = {10,20,30,40,50};
+```
+
+Memory এ এটা এমনভাবে থাকে:
+
+| Index | Value | Memory Address (Example) |
+|------|------|------|
+| arr[0] | 10 | 1000 |
+| arr[1] | 20 | 1004 |
+| arr[2] | 30 | 1008 |
+| arr[3] | 40 | 1012 |
+| arr[4] | 50 | 1016 |
+
+Explanation
+
+- `int` সাধারণত **4 byte** জায়গা নেয়
+- তাই প্রতিটি element এর address **4 করে বাড়ে**
+
+```
+1000
+1004
+1008
+1012
+1016
+```
+
+---
+
+# Memory Address Print
+
+Array এর memory address দেখতে `&` operator ব্যবহার করা হয়।
+
+```cpp
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    int arr[3] = {10,20,30};
+
+    cout << &arr[0] << endl;
+    cout << &arr[1] << endl;
+    cout << &arr[2] << endl;
+
+    return 0;
+}
+```
+
+Output (example)
+
+```
+0x61ff08
+0x61ff0c
+0x61ff10
+```
+
+---
+
+# Loop ব্যবহার করে Address Print
+
+```cpp
+int arr[5] = {10,20,30,40,50};
+
+for(int i=0;i<5;i++)
+{
+    cout << &arr[i] << endl;
+}
+```
+
+---
+
+# Important Point
+
+- Array এর **প্রথম element এর address** = Array এর নাম।
+
+Example
+
+```cpp
+cout << arr;
+```
+
+এটা আসলে
+
+```
+arr == &arr[0]
+```
+
+---
+
+# সহজভাবে মনে রাখো
+
+| Concept | Meaning |
+|------|------|
+| `arr[0]` | প্রথম element |
+| `&arr[0]` | প্রথম element এর memory address |
+| `arr` | পুরো array এর starting address |
+
+---
+
+# Small Story
+
+ধরো একটি **বইয়ের তাক** আছে।
+
+```
+Shelf 1 → 10
+Shelf 2 → 20
+Shelf 3 → 30
+Shelf 4 → 40
+Shelf 5 → 50
+```
+
+প্রতিটি shelf এর একটি **address (location)** আছে।
+
+Array ঠিক এমনভাবেই **memory তে data সাজিয়ে রাখে**।
+
+---
 
 ---
 
@@ -220,3 +348,332 @@ int main()
 | Reverse | উল্টোভাবে print |
 
 ---
+# C++ Array Operations
+
+Array এর উপর আমরা বিভিন্ন ধরনের operation করতে পারি যেমন:
+
+- Insert (নতুন value যোগ করা)
+- Remove / Delete (value মুছে ফেলা)
+- Swap (দুইটা value পরিবর্তন করা)
+- Reverse (উল্টো করে দেওয়া)
+
+---
+
+# 1️⃣ Insert Value at Any Position
+
+যে position এ value বসাতে চাই, তার পরে সব element **একটা করে right shift** করতে হয়।
+
+### Code
+
+```cpp
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    int n;
+    cin >> n;
+
+    int arr[n+1];
+
+    for(int i=0;i<n;i++)
+    {
+        cin >> arr[i];
+    }
+
+    int idx,value;
+    cin >> idx >> value;
+
+    for(int i=n;i>idx;i--)
+    {
+        arr[i] = arr[i-1];
+    }
+
+    arr[idx] = value;
+    n++;
+
+    for(int i=0;i<n;i++)
+    {
+        cout << arr[i] << " ";
+    }
+}
+```
+
+Example
+
+```
+Input
+5
+10 20 30 40 50
+2 25
+
+Output
+10 20 25 30 40 50
+```
+
+---
+
+# 2️⃣ Remove / Delete Value from Any Position
+
+Delete করতে হলে element গুলোকে **left shift** করতে হয়।
+
+### Code
+
+```cpp
+int idx;
+cin >> idx;
+
+for(int i=idx;i<n-1;i++)
+{
+    arr[i] = arr[i+1];
+}
+
+n--;
+
+for(int i=0;i<n;i++)
+{
+    cout << arr[i] << " ";
+}
+```
+
+Example
+
+```
+Array: 10 20 30 40 50
+Delete index 2
+
+Result:
+10 20 40 50
+```
+
+---
+
+# 3️⃣ Swap Two Values
+
+দুইটা index এর value change করা।
+
+### Code
+
+```cpp
+int i,j;
+cin >> i >> j;
+
+int temp = arr[i];
+arr[i] = arr[j];
+arr[j] = temp;
+```
+
+Example
+
+```
+Array: 10 20 30 40
+Swap index 1 and 3
+
+Result:
+10 40 30 20
+```
+
+---
+
+# 4️⃣ Reverse Array
+
+Array উল্টো করে print করা।
+
+### Code
+
+```cpp
+for(int i=n-1;i>=0;i--)
+{
+    cout << arr[i] << " ";
+}
+```
+
+Example
+
+```
+Array: 10 20 30 40
+
+Output:
+40 30 20 10
+```
+
+---
+
+# Reverse Array (Swap Method)
+
+```cpp
+for(int i=0;i<n/2;i++)
+{
+    int temp = arr[i];
+    arr[i] = arr[n-1-i];
+    arr[n-1-i] = temp;
+}
+```
+
+---
+
+# Array Operations Summary
+
+| Operation | Description |
+|----------|-------------|
+| Insert | নির্দিষ্ট position এ নতুন value যোগ করা |
+| Delete | নির্দিষ্ট position এর value remove করা |
+| Swap | দুইটা element এর জায়গা পরিবর্তন |
+| Reverse | array উল্টো করে দেওয়া |
+
+---
+
+# Simple Example
+
+Array
+
+```
+10 20 30 40 50
+```
+
+Operations
+
+```
+Insert 25 at index 2 → 10 20 25 30 40 50
+Delete index 3       → 10 20 25 40 50
+Swap index 1 & 3     → 10 40 25 20 50
+Reverse              → 50 20 25 40 10
+```
+
+---
+
+# Two Pointer Technique (C++)
+
+Two Pointer Technique হলো এমন একটি পদ্ধতি যেখানে **একই array বা string এ দুইটা index ব্যবহার করা হয়**।
+
+সাধারণত দুইটি variable ব্যবহার করা হয়:
+
+```
+i → শুরু থেকে
+j → শেষ থেকে
+```
+
+এবং condition হয়
+
+```
+while(i < j)
+```
+
+---
+
+# Basic Idea
+
+```
+i → ← j
+```
+
+- `i` শুরু থেকে move করে
+- `j` শেষ থেকে move করে
+- প্রয়োজন অনুযায়ী swap / check করা হয়
+
+---
+
+# Two Pointer Template
+
+```cpp
+int i = 0;
+int j = n - 1;
+
+while(i < j)
+{
+    // operation
+
+    i++;
+    j--;
+}
+```
+
+---
+
+# Example: Reverse Array
+
+### Code
+
+```cpp
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    int n;
+    cin >> n;
+
+    int arr[n];
+
+    for(int i=0;i<n;i++)
+    {
+        cin >> arr[i];
+    }
+
+    int i = 0;
+    int j = n - 1;
+
+    while(i < j)
+    {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+
+        i++;
+        j--;
+    }
+
+    for(int i=0;i<n;i++)
+    {
+        cout << arr[i] << " ";
+    }
+}
+```
+
+---
+
+# Example
+
+Array
+
+```
+10 20 30 40 50
+```
+
+Step 1
+
+```
+i=0 , j=4
+swap → 50 20 30 40 10
+```
+
+Step 2
+
+```
+i=1 , j=3
+swap → 50 40 30 20 10
+```
+
+Result
+
+```
+50 40 30 20 10
+```
+
+---
+
+# Two Pointer Use Cases
+
+Two Pointer technique অনেক problem এ ব্যবহার হয়।
+
+### Common Problems
+
+- Reverse Array
+- Palindrome Check
+- Two Sum
+- Remove Duplicates
+- Move Zeroes
+- Container With Most Water
+
+---
+
