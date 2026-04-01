@@ -677,3 +677,118 @@ Two Pointer technique অনেক problem এ ব্যবহার হয়।
 
 ---
 
+
+
+# C ভাষা – স্ট্রিংস 
+
+---
+
+## 1. What is a String?
+
+In C, a **string** হল একটি **character array**, যা **null character (`'\0'`)** দিয়ে শেষ হয়।
+
+**উদাহরণ:**
+
+```c
+char name[10] = "Raihan";  // 'R', 'a', 'i', 'h', 'a', 'n', '\0'
+```
+
+---
+
+## 2. Declaring Strings
+
+```c
+char str1[20];             // খালি স্ট্রিং (user input এর জন্য)
+char str2[] = "Hello";     // কম্পাইলার স্বয়ংক্রিয়ভাবে সাইজ নির্ধারণ করে
+char str3[6] = {'H','e','l','l','o','\0'}; // স্পষ্ট null character
+```
+
+---
+
+## 3. Input and Output of Strings
+
+### Input Methods
+
+**Using `scanf()`**
+
+* ইনপুট স্পেস এ থেমে যায়
+
+```c
+char name[20];
+scanf("%s", name);
+```
+
+**Using `fgets()`**
+
+* পুরো লাইন পড়তে পারে, স্পেসসহ
+
+```c
+char name[50];
+fgets(name, 50, stdin);
+```
+
+### Output Strings
+
+```c
+printf("নাম: %s\n", name);
+```
+
+---
+
+## 4. Common String Functions (`string.h`)
+
+লাইব্রেরি অন্তর্ভুক্ত করুন:
+
+```c
+#include <string.h>
+```
+
+| Function            | Purpose                                          |
+| ------------------- | ------------------------------------------------ |
+| `strlen(s)`         | স্ট্রিং দৈর্ঘ্য বের করে (excluding `'\0'`)       |
+| `strcpy(dest, src)` | স্ট্রিং কপি করে `src` থেকে `dest` এ              |
+| `strcat(dest, src)` | `src` যোগ করে `dest` এর শেষে                     |
+| `strcmp(s1, s2)`    | দুটি স্ট্রিং তুলনা করে (সমান হলে `0` return করে) |
+| `strchr(s, c)`      | প্রথম occurrence খুঁজে `c` character এর          |
+| `strstr(s1, s2)`    | substring `s2` খুঁজে `s1`-এ                      |
+
+**উদাহরণ:**
+
+```c
+char str1[20] = "Hello";
+char str2[20] = "World";
+
+strcat(str1, str2);      // str1 = "HelloWorld"
+int len = strlen(str1);  // len = 10
+```
+
+---
+
+## 5. Important Notes
+
+1. C strings **mutable**, তবে array সাইজ পর্যাপ্ত না হলে buffer overflow হতে পারে।
+2. সব স্ট্রিং অপারেশন null character (`'\0'`) এর উপর নির্ভর করে।
+3. সবসময় array তে null character রাখার জন্য পর্যাপ্ত স্থান নিশ্চিত করুন।
+4. নিরাপদ ইনপুটের জন্য `fgets()` ব্যবহার করুন `scanf()` এর পরিবর্তে।
+
+---
+
+## 6. String vs Char
+
+| Feature         | Char          | String          |
+| --------------- | ------------- | --------------- |
+| Type            | একক character | character array |
+| উদাহরণ          | `'A'`         | `"Hello"`       |
+| Null-terminated | না            | হ্যাঁ (`'\0'`)  |
+| Storage         | ১ byte        | একাধিক byte     |
+
+**উদাহরণ:**
+
+```c
+char letter = 'A';
+char name[10] = "Raihan";
+```
+
+---
+
+
