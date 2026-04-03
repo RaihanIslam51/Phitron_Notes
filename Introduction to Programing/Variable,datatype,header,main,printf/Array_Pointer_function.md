@@ -1011,6 +1011,69 @@ for (int i = 1; i <= n; i++) {
 * Pyramid → `2*i - 1`
 * Space → `n - i`
 
+# Flag Variable & Sum of Values in Array (C++)
+
+## Objective
+Determine whether there exist **two numbers in an array** whose sum equals a given target value `x`.
+
+---
+
+## Flag Variable কী? (Bangla Explanation)
+Flag variable হলো একটি **signal বা indicator** যা ব্যবহার করা হয় কোনো **condition সত্য হয়েছে কিনা** তা track করার জন্য।  
+
+- `0` মানে: condition এখনও পূরণ হয়নি  
+- `1` মানে: condition পূরণ হয়েছে  
+
+Flag variable সাধারণত **loop control এবং condition tracking** এর জন্য ব্যবহার হয়। এটি code readability ও efficiency বাড়ায়।  
+
+---
+
+## Algorithm Explanation (Bangla)
+1. **Array Input নেওয়া**: ব্যবহারকারী থেকে array এর size `n` এবং elements input নেওয়া হয়।  
+2. **Target Value নির্ধারণ**: একটি integer `x` রাখা হয় যা আমাদের pair এর sum এর সাথে match করতে হবে।  
+3. **Loop Structure**:  
+   - দুটি nested loop ব্যবহার করা হয়।  
+     - Outer loop: প্রতিটি element নেয়া হয়।  
+     - Inner loop: পরবর্তী element এর সাথে current element যোগ করে চেক করা হয়।  
+4. **Flag ব্যবহার**:  
+   - শুরুতে `flag = 0` set করা হয়।  
+   - যদি কোনো pair এর sum `x` এর সমান হয়, `flag = 1` set করা হয় এবং “yes” print করা হয়।  
+   - Pair পাওয়া গেলে inner loop এবং outer loop exit করা হয়।  
+5. **Sum না পাওয়া গেলে**:  
+   - সব loop শেষ হলে যদি `flag == 0`, "no" print করা হয়।  
+
+---
+
+## C++ Code Example
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+   int n;
+  cin >> n;
+ int x=5;
+ int flag=0;
+ int arr[n];
+ for(int i=0; i<n; i++){
+    cin>>arr[i];
+ }
+ for(int i=0; i<n-1; i++){
+
+    for(int j=i+1; j<n; j++){
+
+        if(arr[i]+arr[j]==x){
+            flag=1;
+            cout<<"yes";
+        }
+    }
+ }
+  if(flag==0){
+     cout<<"no";
+   }
+
+}
 
 
 
