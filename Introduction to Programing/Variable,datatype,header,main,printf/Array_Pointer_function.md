@@ -1074,6 +1074,62 @@ int main() {
    }
 
 }
+```
+# Selection Sort in C++
+
+---
+
+## Selection Sort কী? 
+Selection Sort হলো একটি **simple comparison-based sorting algorithm**, যা array কে **ascending order** এ sort করে।  
+
+**Step-by-Step Algorithm (Bangla):**  
+1. Array এর প্রথম element থেকে শুরু করা হয়।  
+2. Current position থেকে **smallest element** খুঁজে বের করা হয়।  
+3. Current element এর সাথে **smallest element swap** করা হয়।  
+4. পরবর্তী position এ গিয়ে step 2 এবং 3 repeat করা হয়।  
+5. সব elements process হলে array **sorted** হয়ে যায়।  
+
+**Characteristics:**  
+- Time Complexity: `O(n^2)`  
+- Space Complexity: `O(1)` (In-place)  
+- Simple এবং ছোট array এর জন্য efficient।  
+
+---
+
+## C++ Code Example
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+   int n;
+  cin >> n;
+ int arr[n];
+ for(int i=0; i<n; i++){
+    cin>>arr[i];
+ }
+ for(int i=0; i<n-1; i++){
+
+    for(int j=i+1; j<n; j++){
+
+        if(arr[i]>arr[j]){
+            int temp=arr[i];
+            arr[i]=arr[j];
+            arr[j]=temp; 
+        }
+    }
+ }
+
+ for(int i=0; i<n; i++){
+    cout<<arr[i];
+    cout<<" ";
+ }
+ 
+
+    return 0;
+}
+
 
 
 
