@@ -789,6 +789,229 @@ char letter = 'A';
 char name[10] = "Raihan";
 ```
 
+# C++ Pattern Mastery Guide
+
+
+
 ---
+
+## ⭐ Basic Star Pattern
+
+```cpp
+for (int i = 1; i <= n; i++) {
+    for (int j = 1; j <= i; j++) {
+        cout << "*";
+    }
+    cout << endl;
+}
+```
+
+```
+*
+**
+***
+****
+*****
+```
+
+### 🧠 Explanation (Bangla)
+
+* বাইরের loop (`i`) → কয়টা লাইন হবে
+* ভেতরের loop (`j`) → প্রতি লাইনে কয়টা `*` হবে
+* প্রতি লাইনে star বাড়ে
+
+---
+
+## 🔁 Reverse Star Pattern
+
+```cpp
+for (int i = n; i >= 1; i--) {
+    for (int j = 1; j <= i; j++) {
+        cout << "*";
+    }
+    cout << endl;
+}
+```
+
+```
+*****
+****
+***
+**
+*
+```
+
+### 🧠 Explanation (Bangla)
+
+* প্রথম লাইনে বেশি `*`
+* প্রতি লাইনে কমতে থাকে
+
+---
+
+## 📐 Right-Aligned Triangle
+
+```cpp
+for (int i = 1; i <= n; i++) {
+
+    for (int j = 1; j <= n - i; j++) {
+        cout << " ";
+    }
+
+    for (int j = 1; j <= i; j++) {
+        cout << "*";
+    }
+
+    cout << endl;
+}
+```
+
+```
+    *
+   **
+  ***
+ ****
+*****
+```
+
+### 🧠 Explanation (Bangla)
+
+* আগে space print করতে হয়
+* তারপর star print
+* Space কমে, star বাড়ে
+
+---
+
+## 🔺 Pyramid Pattern
+
+```cpp
+for (int i = 1; i <= n; i++) {
+
+    for (int j = 1; j <= n - i; j++) {
+        cout << " ";
+    }
+
+    for (int j = 1; j <= (2 * i - 1); j++) {
+        cout << "*";
+    }
+
+    cout << endl;
+}
+```
+
+```
+    *
+   ***
+  *****
+ *******
+*********
+```
+
+### 🧠 Explanation (Bangla)
+
+* Pyramid এর জন্য star odd number হয় (1,3,5...)
+* Space কমে
+* Star = (2*i - 1)
+
+---
+
+## 🔻 Inverted Pyramid
+
+```cpp
+for (int i = n; i >= 1; i--) {
+
+    for (int j = 1; j <= n - i; j++) {
+        cout << " ";
+    }
+
+    for (int j = 1; j <= (2 * i - 1); j++) {
+        cout << "*";
+    }
+
+    cout << endl;
+}
+```
+
+```
+*********
+ *******
+  *****
+   ***
+    *
+```
+
+### 🧠 Explanation (Bangla)
+
+* Pyramid এর উল্টা version
+* Star কমে
+* Space বাড়ে
+
+---
+
+## 💎 Diamond Pattern
+
+```cpp
+// Upper
+for (int i = 1; i <= n; i++) {
+    for (int j = 1; j <= n - i; j++) cout << " ";
+    for (int j = 1; j <= (2 * i - 1); j++) cout << "*";
+    cout << endl;
+}
+
+// Lower
+for (int i = n - 1; i >= 1; i--) {
+    for (int j = 1; j <= n - i; j++) cout << " ";
+    for (int j = 1; j <= (2 * i - 1); j++) cout << "*";
+    cout << endl;
+}
+```
+
+### 🧠 Explanation (Bangla)
+
+* Pyramid + Inverted Pyramid = Diamond
+* প্রথমে বাড়ে, তারপর কমে
+
+---
+
+## 🔢 Number Pattern
+
+```cpp
+for (int i = 1; i <= n; i++) {
+    for (int j = 1; j <= i; j++) {
+        cout << j << " ";
+    }
+    cout << endl;
+}
+```
+
+```
+1
+1 2
+1 2 3
+1 2 3 4
+```
+
+### 🧠 Explanation (Bangla)
+
+* প্রতি লাইনে number print হয়
+* 1 থেকে শুরু করে line অনুযায়ী বাড়ে
+
+---
+
+## ⚡ Pattern Logic (Important)
+
+### ✅ Core Idea
+
+* Outer loop → Line control
+* Inner loop → Print control
+
+### 🔥 Formula
+
+* Triangle → `j <= i`
+* Reverse → `j <= n - i`
+* Pyramid → `2*i - 1`
+* Space → `n - i`
+
+
+
 
 
