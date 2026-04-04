@@ -371,6 +371,24 @@ for(int i = 0; i < 3; i++){
 ---
 
 ## 6. Common Operations on 2D Array
+### Print Specific Row
+
+```cpp
+int r = 1; // 2nd row
+for(int j = 0; j < cols; j++){
+    cout << marks[r][j] << " ";
+}
+cout << endl;
+```
+### Print Specific Column
+
+```cpp
+int c = 2; // 3rd column
+for(int i = 0; i < rows; i++){
+    cout << marks[i][c] << " ";
+}
+cout << endl;
+```
 
 ### 6.1 Traverse (Loop through all elements)
 
