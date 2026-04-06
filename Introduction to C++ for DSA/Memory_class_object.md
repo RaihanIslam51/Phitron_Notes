@@ -507,6 +507,824 @@ int main() {
 
 ---
 
+# 📘 Class & Object (User Defined Data Type)
+
+---
+
+A **Class** হলো একটি **user-defined data type** যা variables (data) এবং functions (behavior) একসাথে রাখে।
+
+👉 সহজভাবে:
+**Class = Blueprint (নকশা)**
+
+🧠 উদাহরণ:
+“Student” একটি class হতে পারে, যেখানে name, id, marks থাকবে।
+
+---
+
+## 🔹 Syntax of Class
+
+```cpp
+class ClassName {
+public:
+    // data members
+    // member functions
+};
+```
+
+---
+
+## 🔹 What is an Object?
+
+**Object** হলো class এর একটি instance (বাস্তব রূপ)
+
+👉 সহজভাবে:
+**Object = বাস্তব জিনিস (Class থেকে তৈরি)**
+
+---
+
+## 🔹 Real Life Example
+
+* Class = Student
+* Object = Rahim, Karim
+
+---
+
+## 🔸 Full Example Code (2 Student Data)
+
+```cpp
+#include<iostream>
+using namespace std;
+
+class Student {
+public:
+    string name;
+    int id;
+    float marks;
+
+    void display() {
+        cout << "Name: " << name << endl;
+        cout << "ID: " << id << endl;
+        cout << "Marks: " << marks << endl;
+        cout << "----------------------" << endl;
+    }
+};
+
+int main() {
+
+    // Object create
+    Student s1, s2;
+
+    // Student 1 data
+    s1.name = "Raihan";
+    s1.id = 101;
+    s1.marks = 85.5;
+
+    // Student 2 data
+    s2.name = "Karim";
+    s2.id = 102;
+    s2.marks = 90.0;
+
+    // Display data
+    s1.display();
+    s2.display();
+
+    return 0;
+}
+```
+
+---
+
+## 🔹 Explanation
+
+* `class Student` → নতুন data type তৈরি
+* `name, id, marks` → data members
+* `display()` → function
+* `Student s1, s2` → 2টি object তৈরি
+* `s1.name` → object দিয়ে data access
+
+---
+
+## 🔸 Why Class is User Defined Data Type?
+
+👉 কারণ:
+
+* আমরা নিজেরা নতুন data type তৈরি করি
+* যেমন: `int`, `float` built-in
+* তেমনি `Student` হলো custom type
+
+```cpp
+Student s1, s2;
+```
+
+---
+
+## 🔹 Access Specifiers
+
+| Type      | Meaning                         |
+| --------- | ------------------------------- |
+| public    | সবাই access করতে পারবে          |
+| private   | শুধু class এর ভিতরে             |
+| protected | derived class access করতে পারবে |
+
+---
+
+---
+# 📘 Constructor (OOP Concept)
+
+---
+
+A **Constructor** হলো একটি special function যা **object তৈরি হওয়ার সাথে সাথে automatically call হয়**।
+
+👉 সহজভাবে:
+**Constructor = object তৈরি হলে automatic run or call হওয়া function**
+N.B : CONSTRUCTOR use korar karon hosce object ta komano jokhon onk student lagbe tokhon use korbo r na hole normally object
+
+
+---
+
+## 🔹 Key Features of Constructor
+
+* Function name = Class name
+* No return type (even not void)
+* Automatically called
+* Used to initialize object
+
+---
+
+## 🔸 Syntax
+
+```cpp id="c1"
+class ClassName {
+public:
+    ClassName() {
+        // initialization code
+    }
+};
+```
+
+---
+
+## 🔸 Example (Default Constructor)
+
+```cpp id="c2"
+#include<iostream>
+using namespace std;
+
+class Student {
+public:
+    string name;
+    int id;
+
+    Student() {
+        cout << "Constructor called!" << endl;
+    }
+};
+
+int main() {
+    Student s1;  // constructor auto call
+    return 0;
+}
+```
+
+---
+
+## 🔹 Explanation (Bangla)
+
+* `Student()` → constructor
+* object create হলেই run হয়
+* manually call করতে হয় না
+
+---
+
+## 🔸 Parameterized Constructor
+
+👉 যখন constructor এ parameter থাকে
+
+```cpp id="c3"
+#include<iostream>
+using namespace std;
+
+class Student {
+public:
+    string name;
+    int id;
+
+    Student(string n, int i) {
+        name = n;
+        id = i;
+    }
+
+    void display() {
+        cout << name << " " << id << endl;
+    }
+};
+
+int main() {
+    Student s1("Raihan", 101);
+    Student s2("Karim", 102);
+
+    s1.display();
+    s2.display();
+
+    return 0;
+}
+```
+
+---
+
+## 🔹 Explanation
+
+* constructor এ value pass করা হয়েছে
+* object create করার সময়ই data set হচ্ছে
+
+---
+
+## 🔸 Types of Constructor
+
+### 1️⃣ Default Constructor
+
+No parameter
+
+### 2️⃣ Parameterized Constructor
+
+With parameter
+
+### 3️⃣ Copy Constructor
+
+এক object থেকে অন্য object copy করা
+
+---
+
+## 🔸 Copy Constructor Example
+
+```cpp id="c4"
+#include<iostream>
+using namespace std;
+
+class Student {
+public:
+    string name;
+
+    Student(string n) {
+        name = n;
+    }
+
+    // Copy Constructor
+    Student(const Student &s) {
+        name = s.name;
+    }
+};
+
+int main() {
+    Student s1("Raihan");
+    Student s2 = s1;  // copy
+
+    cout << s2.name << endl;
+
+    return 0;
+}
+```
+
+---
+
+## 🔹 Why Constructor is Important?
+
+* Object initialization easy করে
+* Code clean হয়
+* Automatic execution
+
+---
+# 📘 `this` Keyword in C++
+
+---
+
+`this` হলো একটি **pointer** যা current object কে নির্দেশ করে।
+
+👉 সহজভাবে:
+**this = current object এর address**
+
+---
+
+## 🔹 Why we use `this`?
+
+* Same name variable distinguish করতে
+* Current object refer করতে
+* Function chaining করতে
+
+---
+
+## 🔸 Basic Syntax
+
+```cpp id="t1"
+this->variableName
+```
+
+---
+
+## 🔸 Example 1: Same Name Variable Problem Solve
+
+```cpp id="t2"
+#include<iostream>
+using namespace std;
+
+class Student {
+public:
+    string name;
+
+    Student(string name) {
+        this->name = name; // this->name (class variable)
+    }
+
+    void display() {
+        cout << name << endl;
+    }
+};
+
+int main() {
+    Student s1("Raihan");
+    s1.display();
+
+    return 0;
+}
+```
+
+---
+
+## 🔹 Explanation
+
+* `name = name` লিখলে confusion হয়
+* `this->name` → class variable
+* `name` → parameter
+  👉 তাই `this` ব্যবহার করা হয়েছে
+
+---
+
+## 🔸 Example 2: Return Current Object (Method Chaining)
+
+```cpp id="t3"
+#include<iostream>
+using namespace std;
+
+class Test {
+public:
+    int x;
+
+    Test(int x) {
+        this->x = x;
+    }
+
+    Test& setX(int x) {
+        this->x = x;
+        return *this;
+    }
+
+    void show() {
+        cout << x << endl;
+    }
+};
+
+int main() {
+    Test t1(10);
+
+    t1.setX(20).show(); // chaining
+
+    return 0;
+}
+```
+
+---
+
+## 🔹 Explanation
+
+* `return *this` → current object return করে
+* তাই chain করে function call করা যায়
+
+---
+
+## 🔸 Important Notes
+
+* `this` is a pointer
+* `this->x` মানে pointer দিয়ে access
+* Only class member function এর ভিতরে use হয়
+* Static function এ `this` থাকে না
+
+---
+# 📘 Returning Object from Function
+
+---
+
+C++ এ একটি function থেকে **object return করা যায়**, ঠিক যেমন আমরা int, float return করি।
+
+👉 সহজভাবে:
+**Function → object return করতে পারে**
+
+---
+
+## 🔸 Example 1: Simple Object Return
+
+```cpp id="r2"
+#include<iostream>
+using namespace std;
+
+class Student {
+public:
+    string name;
+    int id;
+};
+
+Student createStudent() {
+    Student s;
+    s.name = "Raihan";
+    s.id = 101;
+    return s; // object return
+}
+
+int main() {
+    Student s1 = createStudent();
+
+    cout << s1.name << " " << s1.id << endl;
+
+    return 0;
+}
+```
+
+---
+
+## 🔹 Explanation
+
+* `createStudent()` → function
+* ভিতরে object `s` তৈরি হয়েছে
+* শেষে `return s` → object return করছে
+* `s1` এ সেই object store হচ্ছে
+
+---
+
+## 🔸 Example 2: Return Object with Constructor
+
+```cpp id="r3"
+#include<iostream>
+using namespace std;
+
+class Student {
+public:
+    string name;
+    int id;
+
+    Student(string n, int i) {
+        name = n;
+        id = i;
+    }
+};
+
+Student getStudent() {
+    return Student("Karim", 102); // temporary object return
+}
+
+int main() {
+    Student s2 = getStudent();
+
+    cout << s2.name << " " << s2.id << endl;
+
+    return 0;
+}
+```
+
+---
+
+## 🔹 Explanation
+
+* এখানে সরাসরি constructor দিয়ে object return করা হয়েছে
+* Temporary object তৈরি হয়ে return হচ্ছে
+
+---
+
+## 🔸 Example 3: Return Object from Function (Calculation)
+
+```cpp id="r4"
+#include<iostream>
+using namespace std;
+
+class Number {
+public:
+    int value;
+
+    Number(int v) {
+        value = v;
+    }
+};
+
+Number add(Number n1, Number n2) {
+    return Number(n1.value + n2.value);
+}
+
+int main() {
+    Number a(10), b(20);
+
+    Number result = add(a, b);
+
+    cout << result.value << endl;
+
+    return 0;
+}
+```
+
+---
+
+## 🔹 Explanation (Bangla)
+
+* দুইটা object নিয়ে calculation করা হয়েছে
+* নতুন object return করা হয়েছে
+
+---
+
+# 📘 Dynamic Object in C++
+
+---
+
+যে object **runtime এ memory allocate করে (`new` keyword দিয়ে)** তৈরি করা হয়, তাকে **Dynamic Object** বলে।
+
+👉 সহজভাবে:
+**Dynamic Object = Heap memory তে তৈরি object**
+
+---
+
+## 🔹 Why use Dynamic Object?
+
+* Runtime এ object তৈরি করতে
+* Memory efficient করতে
+* Large data handle করতে
+* Pointer ব্যবহার করে control নিতে
+
+---
+
+## 🔸 Syntax
+
+```cpp id="d1"
+ClassName *ptr = new ClassName();
+```
+
+---
+
+## 🔸 Example 1: Basic Dynamic Object
+
+```cpp id="d2"
+#include<iostream>
+using namespace std;
+
+class Student {
+public:
+    string name;
+    int id;
+
+    void display() {
+        cout << name << " " << id << endl;
+    }
+};
+
+int main() {
+
+    // Dynamic object create
+    Student *s1 = new Student();
+
+    s1->name = "Raihan";
+    s1->id = 101;
+
+    s1->display();
+
+    return 0;
+}
+```
+
+---
+
+## 🔹 Explanation
+
+* `new Student()` → heap এ object তৈরি
+* `s1` → pointer (object এর address ধরে)
+* `->` → pointer দিয়ে access
+
+---
+
+## 🔸 Example 2: Dynamic Object with Constructor
+
+```cpp id="d3"
+#include<iostream>
+using namespace std;
+
+class Student {
+public:
+    string name;
+    int id;
+
+    Student(string n, int i) {
+        name = n;
+        id = i;
+    }
+
+    void show() {
+        cout << name << " " << id << endl;
+    }
+};
+
+int main() {
+
+    Student *s2 = new Student("Karim", 102);
+
+    s2->show();
+
+    return 0;
+}
+```
+
+---
+
+## 🔹 Explanation 
+
+* Constructor call হচ্ছে `new` এর সাথে
+* Direct value pass করা হয়েছে
+
+---
+
+## 🔸 Example 3: Multiple Dynamic Objects
+
+```cpp id="d4"
+#include<iostream>
+using namespace std;
+
+class Test {
+public:
+    int x;
+
+    Test(int x) {
+        this->x = x;
+    }
+
+    void show() {
+        cout << x << endl;
+    }
+};
+
+int main() {
+
+    Test *t1 = new Test(10);
+    Test *t2 = new Test(20);
+
+    t1->show();
+    t2->show();
+
+    return 0;
+}
+```
+
+## 🔹 Memory Concept
+
+* Stack → normal object
+* Heap → dynamic object (`new`)
+
+---
+
+## 🔹 Real Life Idea
+
+👉 ধরো:
+
+* App run হওয়ার সময় user যত object লাগবে তত create হবে
+* আগে থেকে fixed না
+
+---
+# 📘 Sort Function in C++ (`sort()`)
+
+---
+
+C++ এ `sort()` হলো একটি **built-in function** যা array বা vector কে **ascending বা descending order এ সাজায়**।
+
+
+---
+
+## 🔹 Basic Syntax
+
+```cpp
+sort(start, end);
+```
+
+---
+
+## 🔸 Example 1: Sort Array (Ascending)
+
+```cpp
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+int main() {
+    int arr[] = {5, 2, 9, 1, 3};
+    int n = 5;
+
+    sort(arr, arr + n);
+
+    for(int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+
+    return 0;
+}
+```
+
+### 🔹 Output
+
+```
+1 2 3 5 9
+```
+
+---
+
+## 🔸 Example 2: Sort Array (Descending)
+
+```cpp
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+int main() {
+    int arr[] = {5, 2, 9, 1, 3};
+    int n = 5;
+
+    sort(arr, arr + n, greater<int>());
+
+    for(int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+
+    return 0;
+}
+```
+
+### 🔹 Output
+
+```
+9 5 3 2 1
+```
+
+---
+
+## 🔸 Example 3: Sort Vector
+
+```cpp
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+
+int main() {
+    vector<int> v = {10, 4, 8, 2};
+
+    sort(v.begin(), v.end());
+
+    for(int x : v) {
+        cout << x << " ";
+    }
+
+    return 0;
+}
+```
+
+---
+
+## 🔸 Example 4: Custom Sort (Comparator)
+
+```cpp
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+bool cmp(int a, int b) {
+    return a > b; // descending
+}
+
+int main() {
+    int arr[] = {7, 1, 5, 3};
+
+    sort(arr, arr + 4, cmp);
+
+    for(int i = 0; i < 4; i++) {
+        cout << arr[i] << " ";
+    }
+
+    return 0;
+}
+```
+
+---
+
+## 🔹 Explanation
+
+* `sort(arr, arr+n)` → ascending sort
+* `greater<int>()` → descending
+* comparator function দিয়ে custom rule বানানো যায়
+
+---
+
+
+
 
 
 
