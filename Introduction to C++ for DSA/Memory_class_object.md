@@ -381,7 +381,7 @@ int main() {
 👉 Program run হওয়ার সময় memory allocate করা হয়।
 ## Advantace 
 1.memory size barano jai
-2.function return korleo data thake main a
+2.function return korleo paoa jai but static jeta paoa jai na
 
 👉 এই memory থাকে:
 
