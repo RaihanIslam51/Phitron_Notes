@@ -306,6 +306,176 @@ str.clear();
 cout << str; // empty
 
 ```
+# 📌 Memory Allocation in C++
+
+Memory allocation বলতে বোঝায় program execution এর সময় variable বা data রাখার জন্য memory reserve করা।
+
+C++ এ memory allocation দুইভাবে হয়:
+
+* 🔹 Static Memory Allocation (Compile Time)
+* 🔹 Dynamic Memory Allocation (Run Time)
+
+---
+
+# 🔹 1. Static Memory Allocation (Compile Time)
+
+👉 Program compile হওয়ার সময় memory allocate হয়।
+
+👉 এই memory মূলত থাকে:
+
+* Stack
+* stack automatic data clear kore dei ata big problem
+
+---
+
+## 🔸 Stack Memory
+
+👉 Stack memory ব্যবহার হয়:
+
+* Local variables
+* Function parameters
+* Function call (Call Stack)
+
+### ✨ Features:
+
+* Compile time allocation
+* খুব fast
+* Automatically manage হয় (LIFO - Last In First Out)
+
+### 📌 Example:
+
+```cpp
+#include<iostream>
+using namespace std;
+
+int main() {
+    int x = 10;  // stack memory
+    int y = 20;
+    cout << x + y;
+}
+```
+
+---
+
+```cpp
+#include<iostream>
+using namespace std;
+
+int x = 100; // global variable
+
+int main() {
+    static int y = 50; // static variable
+    cout << x + y;
+}
+```
+
+### 🧠 Explanation:
+
+* Program শুরুতেই allocate হয়
+* Program শেষ না হওয়া পর্যন্ত থাকে
+
+---
+
+# 🔹 2. Dynamic Memory Allocation (Run Time)
+
+👉 Program run হওয়ার সময় memory allocate করা হয়।
+
+👉 এই memory থাকে:
+
+* Heap Memory
+
+---
+
+## 🔸 Heap Memory
+
+👉 Heap memory manually manage করতে হয়।
+
+### ✨ Features:
+
+* Run time allocation
+* Flexible size
+* Slow compared to stack
+* Manual memory management
+
+---
+
+## 📌 Using `new` and `delete`
+
+### Example:
+
+```cpp
+#include<iostream>
+using namespace std;
+
+int main() {
+    int* ptr = new int; // allocate memory in heap
+    *ptr = 25;
+
+    cout << *ptr << endl;
+
+    delete ptr; // free memory
+}
+```
+
+---
+
+## 📌 Dynamic Array Example:
+
+```cpp
+#include<iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    int* arr = new int[n]; // dynamic array
+
+    for(int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    for(int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+
+    delete[] arr; // free memory
+}
+```
+
+---
+
+# 🔥 Stack vs Heap (Important Table)
+
+| Feature         | Stack        | Heap                 |
+| --------------- | ------------ | -------------------- |
+| Allocation Time | Compile Time | Run Time             |
+| Speed           | Fast         | Slow                 |
+| Size            | Limited      | Large                |
+| Management      | Automatic    | Manual               |
+| Risk            | Low          | Memory Leak possible |
+
+---
+
+# ⚠️ Memory Leak
+
+👉 Heap memory free না করলে memory leak হয়।
+
+### ❌ Wrong:
+
+```cpp
+int* ptr = new int;
+// delete ptr; (missing)
+```
+
+### ✅ Correct:
+
+```cpp
+delete ptr;
+```
+
+---
+
 
 
 
