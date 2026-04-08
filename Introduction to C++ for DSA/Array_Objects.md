@@ -28,17 +28,27 @@ ClassName arrayName[size];
 ```cpp
 Student s[3];
 ```
-🔹 Memory Visualization (Concept)
+## 🔹 Memory Visualization (Concept)
+
+```
 Index     Object        Data
 --------------------------------
 s[0]  →  Student  →  name, id
 s[1]  →  Student  →  name, id
 s[2]  →  Student  →  name, id
-🔹 More Detailed View
+```
+
+---
+
+## 🔹 More Detailed View
+
+```
 s[0] → [ name = "Raihan" | id = 101 ]
 s[1] → [ name = "Karim"  | id = 102 ]
 s[2] → [ name = "Sumon"  | id = 103 ]
+```
 
+---
 ---
 
 ## 🔸 Example 1: Basic Array of Objects
