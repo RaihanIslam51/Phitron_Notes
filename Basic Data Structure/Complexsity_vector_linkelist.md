@@ -276,11 +276,773 @@ O(n²)    → 10,000 step ⚠️
 
 ---
 
-# 🔹 Comparison Order (Fast → Slow)
+# 📘 Correct Comparison Order (Fast → Slow)
+
+```text
+O(1)       → constant
+O(log n)   → logarithmic
+O(√n)      → square root
+O(n)       → linear
+O(n log n) → linearithmic
+O(n²)      → quadratic
+```
+
+---
+
+### ✅ কেন এই order?
+
+👉 Speed অনুযায়ী সাজানো:
+
+* **O(1)** → fastest (input এর উপর depend করে না)
+* **O(log n)** → খুব দ্রুত grow করে
+* **O(√n)** → মাঝামাঝি
+* **O(n)** → linear growth
+* **O(n log n)** → একটু heavy (sorting)
+* **O(n²)** → খুব slow ⚠️
+
+---
+
+## 🔹 Easy Trick to Remember 🧠
+
+```text
+1 < log n < √n < n < n log n < n²
+```
+
+👉 এই pattern মনে রাখলে সব clear 🔥
+
+---
+
+## 🔹 Example (n = 100)
+
+```text
+O(1)     → 1 step
+O(log n) → ~7 step
+O(√n)    → ~10 step
+O(n)     → 100 step
+O(nlog n)→ ~700 step
+O(n²)    → 10,000 step ⚠️
+```
+
 
 ```text
 O(1) < O(log n) < O(√n) < O(n) < O(n log n) < O(n²)
 ```
+# 📘 How to Calculate Time Complexity from a Problem
+
+---
+
+## 🔹 Step 1: Loop Count করো
+
+👉 Code এ কয়টা loop আছে দেখো
+
+```cpp
+for(int i = 0; i < n; i++)
+```
+
+👉 Complexity:
+
+```text
+O(n)
+```
+
+🔍 Bangla:
+
+* loop n বার চলছে → O(n)
+
+---
+
+## 🔹 Step 2: Nested Loop চেক করো
+
+```cpp
+for(int i = 0; i < n; i++){
+    for(int j = 0; j < n; j++){
+        // work
+    }
+}
+```
+
+👉 Complexity:
+
+```text
+O(n²)
+```
+
+🔍 Bangla:
+
+* n × n = n²
+
+---
+
+## 🔹 Step 3: Division / Multiplication দেখো
+
+```cpp
+while(n > 1){
+    n = n / 2;
+}
+```
+
+👉 Complexity:
+
+```text
+O(log n)
+```
+
+🔍 Bangla:
+
+* প্রতি বার half হচ্ছে → log n
+
+---
+
+## 🔹 Step 4: Condition Based Loop
+
+```cpp
+for(int i = 1; i*i <= n; i++)
+```
+
+👉 Complexity:
+
+```text
+O(√n)
+```
+
+🔍 Bangla:
+
+* i² ≤ n → i ≈ √n
+
+---
+
+## 🔹 Step 5: Multiple Part হলে Add করো
+
+```cpp
+for(int i = 0; i < n; i++) {}   // O(n)
+for(int i = 0; i < n; i++) {}   // O(n)
+```
+
+👉 Total:
+
+```text
+O(n) + O(n) = O(2n) = O(n)
+```
+
+---
+
+## 🔹 Step 6: Loop inside Loop হলে Multiply করো
+
+```cpp
+for(int i = 0; i < n; i++) {
+    while(x > 1){
+        x = x / 2;
+    }
+}
+```
+
+👉 Complexity:
+
+```text
+O(n log n)
+```
+
+---
+
+# 🔸 Full Example (Real Problem Style)
+
+```cpp
+int n;
+cin >> n;
+
+for(int i = 0; i < n; i++) {
+    cout << i;
+}
+
+for(int i = 0; i < n; i++) {
+    for(int j = 0; j < n; j++) {
+        cout << i << j;
+    }
+}
+```
+
+---
+
+## 🔹 Calculation
+
+```text
+First loop  → O(n)
+Second loop → O(n²)
+
+Total → O(n + n²)
+Final → O(n²)
+```
+
+👉 বড় term নেয়া হয়
+
+---
+
+# 🔹 Shortcut Trick 🔥
+
+| Pattern     | Complexity |
+| ----------- | ---------- |
+| single loop | O(n)       |
+| nested loop | O(n²)      |
+| divide by 2 | O(log n)   |
+| i*i <= n    | O(√n)      |
+| sort()      | O(n log n) |
+
+---
+
+# 🔹 Most Important Rule 🧠
+
+```text
+Ignore small terms & constants
+Take biggest growth only
+```
+
+👉 Example:
+
+```text
+O(n² + n + 5) → O(n²)
+```
+
+---
+
+# 🎯 Final Summary
+
+👉 Problem দেখলে:
+
+1. loop count করো
+2. nested হলে multiply
+3. separate হলে add
+4. divide হলে log
+5. শেষে simplify
+
+---
+
+## 🔥 1 Line Formula
+
+```text
+Time Complexity = Total number of operations (in terms of n)
+```
+
+---
+# 📘 How to Calculate Time from Time Complexity
+
+---
+
+👉 Time complexity directly seconds বলে না
+👉 এটা বলে **operation count**
+
+👉 Real time বের করতে:
+
+```text
+Execution Time ≈ (Number of Operations) / (Operations per Second)
+```
+
+---
+
+## 🔹 Standard Assumption ⚡
+
+Competitive programming এ usually ধরা হয়:
+
+```text
+1 second ≈ 10^7 to 10^8 operations
+```
+
+👉 safe ধরে:
+
+```text
+1 second ≈ 10^7 operations
+```
+
+---
+
+# 🔸 Step-by-Step Calculation
+
+## 🔹 Example 1: O(n)
+
+👉 ধরো:
+
+```text
+n = 10^5
+```
+
+👉 Operation:
+
+```text
+≈ 10^5
+```
+
+👉 Time:
+
+```text
+10^5 / 10^7 = 0.01 sec ✅ fast
+```
+
+---
+
+## 🔹 Example 2: O(n²)
+
+👉 ধরো:
+
+```text
+n = 10^5
+```
+
+👉 Operation:
+
+```text
+(10^5)^2 = 10^10
+```
+
+👉 Time:
+
+```text
+10^10 / 10^7 = 1000 sec ❌ very slow
+```
+
+---
+
+## 🔹 Example 3: O(log n)
+
+```text
+n = 10^5
+log₂(10^5) ≈ 17
+```
+
+👉 Time:
+
+```text
+17 / 10^7 ≈ almost 0 sec 🚀
+```
+
+---
+
+## 🔹 Example 4: O(n log n)
+
+```text
+n = 10^5
+n log n ≈ 10^5 × 17 = 1.7 × 10^6
+```
+
+👉 Time:
+
+```text
+1.7×10^6 / 10^7 ≈ 0.17 sec ✅
+```
+
+---
+
+# 🔸 Quick Table
+
+```text
+n = 10^5
+
+O(1)       → ~0 sec
+O(log n)   → ~0 sec
+O(n)       → 0.01 sec
+O(n log n) → 0.1 sec
+O(n²)      → 1000 sec ❌
+```
+
+---
+
+# 🔹 Easy Shortcut 🧠
+
+👉 Contest rule:
+
+```text
+If operation ≤ 10^7 → OK (1 sec)
+If operation > 10^8 → TLE ❌
+```
+
+---
+
+# 🔹 Real Use Case
+
+## Input Size vs Complexity
+
+| n value | Safe Complexity  |
+| ------- | ---------------- |
+| 10⁵     | O(n), O(n log n) |
+| 10³     | O(n²)            |
+| 10⁶     | O(n), O(log n)   |
+
+---
+
+## 🔹 Example (Your Student Code)
+
+👉 Loop:
+
+```cpp
+for(int i = 0; i < n; i++)
+```
+
+👉 Complexity:
+
+```text
+O(n)
+```
+
+👉 যদি n = 10^5:
+
+```text
+Time ≈ 0.01 sec ✅
+```
+
+---
+
+# 🎯 Final Formula
+
+```text
+Time ≈ (Complexity value) / 10^7
+```
+
+---
+
+# 📘 Vector in C++ (Easy Notes)
+
+---
+
+`vector` হলো C++ STL এর একটি **dynamic array**।
+
+👉 সহজভাবে:
+Array এর মতো, কিন্তু size automatically change হয়
+
+---
+
+## 🔹 Why use Vector?
+
+* Dynamic size (resize লাগে না)
+* Easy to use
+* Built-in functions আছে
+
+---
+
+## 🔸 Syntax
+
+```cpp
+vector<data_type> name;
+```
+
+---
+
+# 📘 Vector Declaration Types
+
+---
+
+## 🔹 1️⃣ Empty Vector
+
+```cpp
+vector<int> v;
+```
+
+👉 পরে `push_back()` দিয়ে data add করা হয়
+
+---
+
+## 🔹 2️⃣ Fixed Size Vector
+
+```cpp
+vector<int> v(5);
+```
+
+👉 size = 5, default value = 0
+
+```
+0 0 0 0 0
+```
+
+---
+
+## 🔹 3️⃣ Fixed Size + Value
+
+```cpp
+vector<int> v(5, 10);
+```
+
+👉 সব element = 10
+
+```
+10 10 10 10 10
+```
+
+---
+
+## 🔹 4️⃣ Initialization List
+
+```cpp
+vector<int> v = {1, 2, 3, 4};
+```
+
+---
+
+## 🔹 5️⃣ Copy Vector
+
+```cpp
+vector<int> v2(v1);
+```
+
+---
+
+## 🔹 6️⃣ Assign Vector
+
+```cpp
+vector<int> v2 = v1;
+```
+
+---
+
+## 🔹 7️⃣ Range Copy
+
+```cpp
+vector<int> v(v1.begin(), v1.end());
+```
+
+---
+
+## 🔹 8️⃣ Array to Vector
+
+```cpp
+int arr[] = {1,2,3};
+vector<int> v(arr, arr+3);
+```
+---
+
+## 🔹 🔟 Vector of String
+
+```cpp
+vector<string> v;
+v.push_back("Hello");
+v.push_back("World");
+```
+
+👉 Output:
+
+```
+Hello World
+```
+
+---
+
+## 🔹 Vector of Object
+
+```cpp
+class Student {
+public:
+    string name;
+    int id;
+};
+
+vector<Student> v;
+```
+
+---
+
+# 🔹 Vector Modifiers
+
+```cpp
+v.push_back(x);   // add last
+v.pop_back();     // remove last
+v.insert();       // add in position
+v.erase();        // remove element
+v.clear();        // remove all
+```
+
+---
+
+# 🔹 Vector Iteration
+
+## 🔸 Normal Loop
+
+```cpp
+for(int i = 0; i < v.size(); i++){
+    cout << v[i] << " ";
+}
+```
+
+## 🔸 Range Loop (Best)
+
+```cpp
+for(int x : v){
+    cout << x << " ";
+}
+```
+
+## 🔸 Iterator
+
+```cpp
+for(auto it = v.begin(); it != v.end(); it++){
+    cout << *it << " ";
+}
+```
+
+---
+
+# 🔹 Vector Capacity Functions
+
+## 🔸 size()
+
+```cpp
+v.size();
+```
+
+👉 কত element আছে
+
+---
+
+## 🔸 capacity()
+
+```cpp
+v.capacity();
+```
+
+👉 কত memory allocate আছে
+
+---
+
+## 🔸 resize()
+
+```cpp
+v.resize(n);
+```
+
+👉 size change করে
+
+```
+1 2 3 → 1 2 3 0 0
+```
+
+---
+
+## 🔸 reserve()
+
+```cpp
+v.reserve(n);
+```
+
+👉 আগে থেকেই memory allocate
+
+---
+
+## 🔸 shrink_to_fit()
+
+```cpp
+v.shrink_to_fit();
+```
+
+👉 extra memory remove
+
+---
+
+# 🔹 Example (Capacity)
+
+```cpp
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int main() {
+    vector<int> v;
+
+    for(int i = 1; i <= 5; i++){
+        v.push_back(i);
+        cout << "Size: " << v.size()
+             << " Capacity: " << v.capacity() << endl;
+    }
+}
+```
+
+---
+
+# 🔹 Important Functions
+
+```cpp
+v.size();
+v.empty();
+v.clear();
+v.front();
+v.back();
+```
+
+---
+
+# 🔹 Sorting Vector
+
+```cpp
+#include<algorithm>
+sort(v.begin(), v.end());
+```
+
+---
+
+# 🔹 Time Complexity
+
+| Operation   | Complexity |
+| ----------- | ---------- |
+| push_back   | O(1) avg   |
+| pop_back    | O(1)       |
+| access v[i] | O(1)       |
+| sort        | O(n log n) |
+
+---
+
+
+
+
+```cpp
+vector<int> v(5);
+```
+
+🔍 Explanation:
+
+* size = 5
+* default value = 0
+
+👉 Result:
+
+```text
+0 0 0 0 0
+```
+
+---
+
+
+## 🔹 Explanation 
+
+* `push_back()` → element add করে
+* `v[i]` → access করা যায়
+* `size()` → total element
+
+---
+
+## 🔸 Example 2: Initialization
+
+```cpp
+vector<int> v = {1, 2, 3, 4};
+```
+
+---
+
+## 🔸 Example 3: Input & Output
+
+```cpp
+int n;
+cin >> n;
+
+vector<int> v(n);
+
+for(int i = 0; i < n; i++){
+    cin >> v[i];
+}
+
+for(int x : v){
+    cout << x << " ";
+}
+```
+
+
+
+
+
+
 
 
 
