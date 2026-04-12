@@ -352,7 +352,136 @@ Step 6 → NULL (stop)
 newNode → head
 head = newNode
 ```
+# 📘 Linked List: Insert at Tail (with Visualization)
 
+---
 
+👉 Linked List এর **শেষে (last node এ)** নতুন node add করা।
 
+---
+
+## 🔹 Full Code
+
+```cpp
+#include<iostream>
+using namespace std;
+
+class Node {
+public:
+    int val;
+    Node* next;
+
+    Node(int val) {
+        this->val = val;
+        this->next = NULL;
+    }
+};
+
+void insert_at_tail(Node* &head, int val) {
+    Node* newNode = new Node(val);
+      if(head == NULL) {
+        head = newNode;
+        return;
+      }
+    Node* temp = head;
+    while(temp->next != NULL) {
+        temp = temp->next;
+     }
+    temp->next = newNode;
+}
+
+void linkedlist_print(Node* head) {
+    Node* temp = head;
+   while(temp != NULL) {
+        cout << temp->val << " ";
+        temp = temp->next;
+    }
+    cout << endl;
+}
+
+int main() {
+
+    Node* head = new Node(10);
+    Node* a = new Node(20);
+    Node* b = new Node(30);
+
+    head->next = a;
+    a->next = b;
+
+    insert_at_tail(head, 50);
+    insert_at_tail(head, 60);
+
+    linkedlist_print(head);
+
+    return 0;
+}
+```
+
+---
+
+## 🔹 Visualization (Correct)
+
+### 🔸 Step 1: Initial List
+
+```text
+head
+ ↓
+[10] → [20] → [30] → NULL
+```
+
+---
+
+### 🔸 Step 2: insert_at_tail(head, 50)
+
+```text
+[10] → [20] → [30] → [50] → NULL
+ ↑
+head
+```
+
+---
+
+### 🔸 Step 3: insert_at_tail(head, 60)
+
+```text
+[10] → [20] → [30] → [50] → [60] → NULL
+ ↑
+head
+```
+
+---
+
+## 🔹 How it Works (Easy)
+
+1. new node তৈরি করা হয়
+2. temp দিয়ে last node খোঁজা হয়
+3. last node এর `next` এ new node বসানো হয়
+
+---
+
+## 🎯 Output (Correct)
+
+```text
+10 20 30 50 60
+```
+
+---
+
+## 🎯 Key Difference
+
+| Insert Type    | Position |
+| -------------- | -------- |
+| insert_at_head | শুরুতে   |
+| insert_at_tail | শেষে     |
+
+---
+
+## ✅ Easy Trick
+
+👉 মনে রাখো:
+
+```text
+temp → last node
+temp->next = newNode
+```
 
