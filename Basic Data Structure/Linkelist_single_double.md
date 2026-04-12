@@ -231,3 +231,128 @@ int main() {
 Before: 10
 After: 100
 ---
+
+
+# 📘 Linked List Insert at Head with Visualization
+
+
+```cpp
+#include<iostream>
+using namespace std;
+
+class Node {
+public:
+    int val;
+    Node* next;
+
+    Node(int val) {
+        this->val = val;
+        this->next = NULL;
+    }
+};
+
+
+void insert_at_head(Node* &head, int val) {
+    Node* newNode = new Node(val);
+    newNode->next = head;
+    head = newNode;
+}
+
+
+void linkedlist_print(Node* head) {
+    Node* temp = head;
+
+    while(temp != NULL) {
+        cout << temp->val << " ";
+        temp = temp->next;
+    }
+    cout << endl;
+}
+
+int main() {
+
+    Node* head = new Node(10);
+    Node* a = new Node(20);
+    Node* b = new Node(30);
+
+    head->next = a;
+    a->next = b;
+
+    insert_at_head(head, 100);
+    insert_at_head(head, 200);
+
+    linkedlist_print(head);
+
+    return 0;
+}
+```
+
+---
+
+## 🔹 Visualization (Step by Step)
+
+### 🔸 Step 1: Initial Linked List
+
+```text
+head
+ ↓
+[10] → [20] → [30] → NULL
+```
+
+---
+
+### 🔸 Step 2: insert_at_head(head, 100)
+
+```text
+newNode = 100
+
+newNode → head
+
+[100] → [10] → [20] → [30] → NULL
+ ↑
+head
+```
+
+## 🔹 Traversal (Print Function)
+
+```text
+temp = head
+
+Step 1 → 200
+Step 2 → 100
+Step 3 → 10
+Step 4 → 20
+Step 5 → 30
+Step 6 → NULL (stop)
+```
+
+---
+
+## 🎯 Output
+
+```text
+200 100 10 20 30
+```
+
+---
+
+## 🎯 Key Idea
+
+* Head সবসময় first node কে point করে
+* Insert at head = new node সামনে বসানো
+* Pointer দিয়ে সব node connect করা হয়
+
+---
+
+## ✅ Easy Trick
+
+👉 মনে রাখো:
+
+```text
+newNode → head
+head = newNode
+```
+
+
+
+
