@@ -484,4 +484,157 @@ head
 temp → last node
 temp->next = newNode
 ```
+# 📘 Linked List: Insert at Any Position (with Visualization)
+
+---
+
+👉 Linked List এর **যেকোনো position এ (middle / specific index)** নতুন node add করা।
+
+---
+
+```cpp
+#include<iostream>
+using namespace std;
+
+class Node {
+public:
+    int val;
+    Node* next;
+
+    Node(int val) {
+        this->val = val;
+        this->next = NULL;
+    }
+};
+
+
+void insert_at_position(Node* &head, int idx, int val) {
+
+    Node* newNode = new Node(val);
+    if(idx == 0) {
+        newNode->next = head;
+        head = newNode;
+        return;
+    }
+
+    Node* temp = head;
+    for(int i = 1; i < idx; i++) {
+       //  if(temp == NULL) return;
+        temp = temp->next;
+    }
+    newNode->next = temp->next;
+    temp->next = newNode;
+}
+
+
+void linkedlist_print(Node* head) {
+    Node* temp = head;
+
+    while(temp != NULL) {
+        cout << temp->val << " ";
+        temp = temp->next;
+    }
+    cout << endl;
+}
+
+int main() {
+
+    Node* head = new Node(10);
+    Node* a = new Node(20);
+    Node* b = new Node(30);
+
+    head->next = a;
+    a->next = b;
+
+
+    insert_at_position(head, 1, 100); // index 1
+    insert_at_position(head, 3, 200); // index 3
+
+    linkedlist_print(head);
+
+    return 0;
+}
+```
+
+---
+
+## 🔹 Visualization
+
+### 🔸 Step 1: Initial List
+
+```text
+[10] → [20] → [30] → NULL
+```
+
+---
+
+### 🔸 Step 2: insert_at_position(head, 1, 100)
+
+```text
+[10] → [100] → [20] → [30] → NULL
+```
+
+👉 100 index 1 এ বসেছে
+
+---
+
+### 🔸 Step 3: insert_at_position(head, 3, 200)
+
+```text
+[10] → [100] → [20] → [200] → [30] → NULL
+```
+
+👉 200 index 3 এ বসেছে
+
+---
+
+## 🔹 How it Works (Easy)
+
+1. new node তৈরি করা হয়
+2. `(idx - 1)` node পর্যন্ত যাওয়া হয়
+3. next pointer adjust করা হয়
+
+---
+
+## 🎯 Output
+
+```text
+10 100 20 200 30
+```
+
+---
+
+## 🎯 Important Notes ⚠️
+
+* `idx = 0` → head এ insert
+* invalid position হলে insert হবে না
+* pointer linking খুব important
+
+---
+
+## ✅ Easy Trick
+
+👉 মনে রাখো:
+
+```text
+newNode->next = temp->next
+temp->next = newNode
+```
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
