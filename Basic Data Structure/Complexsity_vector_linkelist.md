@@ -1233,6 +1233,44 @@ Node* temp =head;
 
 ```
 
+# 📘 Pointer Reference in C++
+
+---
+
+Pointer reference মানে হলো **pointer ব্যবহার করে function এর মাধ্যমে original variable change করা**।
+
+👉 এটা এক ধরনের **pass by address**
+
+---
+
+## 🔸 Example Code
+
+```cpp
+#include<iostream>
+using namespace std;
+
+void changePointer(int* p) {
+    *p = 100;
+}
+
+int main() {
+    int a = 10;
+    int* p = &a;
+
+    cout << "Before: " << *p << endl;
+
+    changePointer(p);
+
+    cout << "After: " << *p << endl;
+
+
+}
+```
+---
+Before: 10
+After: 100
+---
+
 
 
 
