@@ -998,9 +998,455 @@ Reverse Print Output:
 ```
 
 ---
+# 📘 Delete Head in Linked List (C++)
+
+---
+
+Delete head মানে হলো Linked List-এর **প্রথম node (head node) remove করা**।
+
+👉 অর্থাৎ:
+
+* head pointer সামনে এগিয়ে যাবে
+* পুরানো head delete হয়ে যাবে
+
+---
+
+## 🔹 Why Delete Head?
+
+Linked List-এ অনেক সময়:
+
+* প্রথম element remove করতে হয়
+* queue operation (dequeue) করতে হয়
+* memory free করতে হয়
+
+
+---
+
+## 🔹 Delete Head Function
+
+```cpp
+void delete_head(Node* &head) {
+    if(head == NULL) {
+        return;
+    }
+
+    Node* deletenode = head;    // old head save
+    head = head->next;   // move head forward
+
+    delete deletenode;         // delete old head
+}
+```
+
+---
+
+## 🔹 Complete Code
+
+```cpp
+#include<iostream>
+using namespace std;
+
+class Node {
+public:
+    int val;
+    Node* next;
+
+    Node(int val) {
+        this->val = val;
+        this->next = NULL;
+    }
+};
+
+void delete_head(Node* &head) {
+
+    if(head == NULL) {
+        return;
+    }
+
+    Node* deletenode = head;
+    head = head->next;
+
+    delete deletenode;
+}
+
+void print_list(Node* head) {
+    Node* temp = head;
+
+    while(temp != NULL) {
+        cout << temp->val << " ";
+        temp = temp->next;
+    }
+    cout << endl;
+}
+
+int main() {
+
+    Node* head = new Node(10);
+    Node* a = new Node(20);
+    Node* b = new Node(30);
+
+    head->next = a;
+    a->next = b;
+
+    cout << "Before Delete: ";
+    print_list(head);
+
+    delete_head(head);
+
+    cout << "After Delete: ";
+    print_list(head);
+
+    return 0;
+}
+```
+
+---
+
+## 🔹 Example
+
+### Output:
+
+```
+Before Delete: 10 20 30
+After Delete: 20 30
+```
+
+---
+
+## 🔹 Visualization
+
+```
+Before:
+[10] -> [20] -> [30] -> NULL
+
+After:
+[20] -> [30] -> NULL
+```
+
+# 📘 Delete Node at Any Position in Linked List (C++)
+
+---
+
+Delete at position মানে হলো Linked List-এর **যেকোনো নির্দিষ্ট position এর node delete করা**।
+
+👉 Example:
+
+```
+10 20 30 40
+```
+
+Position 2 delete করলে:
+
+```
+10 20 40
+```
+
+---
+
+## 🔹 Position Rule
+
+* Position **0-based index** ধরা হয়েছে
+  👉 index শুরু হবে 0 থেকে
+
+| Index | Value |
+| ----- | ----- |
+| 0     | 10    |
+| 1     | 20    |
+| 2     | 30    |
+| 3     | 40    |
 
 
 
+## 🔹 Delete at Position Function
 
+```cpp id="p8v3tk"
+void delete_at_position(Node* &head, int pos) {
+    if(head == NULL) {
+        return;
+    }
 
+    Node* temp = head;
+    for(int i = 0; i < pos - 1; i++) {
+        if(temp->next == NULL) {
+            return;
+        }
+        temp = temp->next;
+    }
 
+    // target node
+    Node* deleteNode = temp->next;
+
+    if(deleteNode == NULL) {
+        cout << "Invalid position\n";
+        return;
+    }
+
+    temp->next = deleteNode->next;
+    delete deleteNode;
+}
+```
+
+---
+
+## 🔹 Complete Code
+
+```cpp id="kz7x2a"
+#include<iostream>
+using namespace std;
+
+class Node {
+public:
+    int val;
+    Node* next;
+
+    Node(int val) {
+        this->val = val;
+        this->next = NULL;
+    }
+};
+
+void delete_at_position(Node* &head, int pos) {
+
+    if(head == NULL) {
+        cout << "List is empty\n";
+        return;
+    }
+
+    if(pos == 0) {
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+        return;
+    }
+
+    Node* temp = head;
+
+    for(int i = 0; i < pos - 1; i++) {
+        if(temp->next == NULL) {
+            cout << "Invalid position\n";
+            return;
+        }
+        temp = temp->next;
+    }
+
+    Node* deleteNode = temp->next;
+
+    if(deleteNode == NULL) {
+        cout << "Invalid position\n";
+        return;
+    }
+
+    temp->next = deleteNode->next;
+    delete deleteNode;
+}
+
+void print_list(Node* head) {
+    Node* temp = head;
+
+    while(temp != NULL) {
+        cout << temp->val << " ";
+        temp = temp->next;
+    }
+    cout << endl;
+}
+
+int main() {
+
+    Node* head = new Node(10);
+    Node* a = new Node(20);
+    Node* b = new Node(30);
+    Node* c = new Node(40);
+
+    head->next = a;
+    a->next = b;
+    b->next = c;
+
+    cout << "Before Delete: ";
+    print_list(head);
+
+    delete_at_position(head, 2);
+
+    cout << "After Delete: ";
+    print_list(head);
+
+    return 0;
+}
+```
+
+---
+
+## 🔹 Example
+
+### Output:
+
+```id="1b9mql"
+Before Delete: 10 20 30 40
+After Delete: 10 20 40
+```
+
+---
+
+## 🔹 Visualization
+
+```id="h3w8zs"
+Before:
+[10] -> [20] -> [30] -> [40]
+
+Delete Position 2
+
+After:
+[10] -> [20] -> [40]
+```
+
+---
+
+# 📘 Doubly Linked List in C++ (Complete Guide)
+
+---
+
+Doubly Linked List হলো এমন একটি data structure যেখানে প্রতিটি node দুইটি pointer রাখে:
+
+* `prev` → আগের node-এর address
+* `next` → পরের node-এর address
+
+👉 অর্থাৎ, list-এ সামনে এবং পিছনে দুই দিকেই যাওয়া যায়
+
+---
+
+## 🔹 Node Structure
+
+```cpp
+class Node {
+public:
+    int val;
+    Node* next;
+    Node* prev;
+
+    Node(int val) {
+        this->val = val;
+        this->next = NULL;
+        this->prev = NULL;
+    }
+};
+```
+
+👉 এখানে প্রতিটি node-এ ৩টা অংশ আছে:
+
+* data (`val`)
+* next pointer
+* previous pointer
+
+---
+
+## 🔹 Visualization
+
+```
+NULL <- [10] <-> [20] <-> [30] -> NULL
+```
+
+👉 Explanation:
+
+* `10` এর prev = NULL
+* `30` এর next = NULL
+* মাঝের node গুলো দুইদিকে connected
+
+---
+
+## 🔹 Why Use Doubly Linked List?
+
+Doubly Linked List ব্যবহার করার কারণ:
+
+* সামনে ও পিছনে traverse করা যায়
+* delete operation সহজ
+* backtracking করা সহজ
+
+---
+
+## 🔹 Insert at Tail
+
+```cpp
+void insert_at_tail(Node* &head, Node* &tail, int val)
+{
+    Node* newNode = new Node(val);
+
+    if(head == NULL)
+    {
+        head = newNode;
+        tail = newNode;
+        return;
+    }
+
+    tail->next = newNode;
+    newNode->prev = tail;
+    tail = newNode;
+}
+```
+
+👉 নতুন node tail এ add হয় এবং prev pointer update করা হয়
+
+---
+
+## 🔹 Print Forward
+
+```cpp
+void print_forward(Node* head)
+{
+    Node* temp = head;
+
+    while(temp != NULL)
+    {
+        cout << temp->val << " ";
+        temp = temp->next;
+    }
+    cout << endl;
+}
+```
+
+👉 সামনে থেকে traverse করে print করা হয়
+
+---
+
+## 🔹 Print Reverse
+
+```cpp
+void print_reverse(Node* tail)
+{
+    Node* temp = tail;
+
+    while(temp != NULL)
+    {
+        cout << temp->val << " ";
+        temp = temp->prev;
+    }
+    cout << endl;
+}
+```
+
+👉 tail থেকে prev দিয়ে reverse print করা হয়
+
+---
+
+## 🔹 Example
+
+### Input:
+
+```
+10 20 30
+```
+
+### Output:
+
+```
+Forward: 10 20 30
+Reverse: 30 20 10
+```
+
+---
+
+## 🔹 How It Works (Bangla)
+
+* প্রতিটি node দুইটা pointer রাখে (`prev`, `next`)
+* insert করলে দুইটা pointer update করতে হয়
+* forward print → next ব্যবহার
+* reverse print → prev ব্যবহার
+
+---
