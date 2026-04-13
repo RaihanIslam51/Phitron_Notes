@@ -1361,13 +1361,36 @@ Doubly Linked List ব্যবহার করার কারণ:
 
 ---
 
+
+## 🔹 Insert at Head Function
+
+```cpp
+void insert_at_head(Node* &head, Node* &tail, int val)
+{
+    Node* newNode = new Node(val);ে
+    if(head == NULL){
+        head = newNode;
+        return;
+    }
+
+    newNode->next = head;  // new node next → old head
+    head->prev = newNode;  // old head prev → new node
+    head = newNode;        // head update
+}
+```
+
+---
+
+
+
+
+
 ## 🔹 Insert at Tail
 
 ```cpp
 void insert_at_tail(Node* &head, Node* &tail, int val)
 {
     Node* newNode = new Node(val);
-
     if(head == NULL)
     {
         head = newNode;
@@ -1442,11 +1465,107 @@ Reverse: 30 20 10
 
 ---
 
-## 🔹 How It Works (Bangla)
+# Complate code 
+```cpp
+#include<iostream>
+using namespace std;
 
-* প্রতিটি node দুইটা pointer রাখে (`prev`, `next`)
-* insert করলে দুইটা pointer update করতে হয়
-* forward print → next ব্যবহার
-* reverse print → prev ব্যবহার
+class Node {
+public:
+    int val;
+    Node* next;
+    Node* prev;
+
+    Node(int val) {
+        this->val = val;
+        this->next = NULL;
+        this->prev = NULL;
+    }
+};
+
+void insert_at_tail(Node* &head, Node* &tail, int val)
+{
+    Node* newNode = new Node(val);
+
+    if(head == NULL)
+    {
+        head = newNode;
+        tail = newNode;
+        return;
+    }
+
+    tail->next = newNode;
+    newNode->prev = tail;
+    tail = newNode;
+}
+
+void print_forward(Node* head)
+{
+    Node* temp = head;
+
+    while(temp != NULL)
+    {
+        cout << temp->val << " ";
+        temp = temp->next;
+    }
+    cout << endl;
+}
+
+void print_backward(Node* tail)
+{
+    Node* temp = tail;
+
+    while(temp != NULL)
+    {
+        cout << temp->val << " ";
+        temp = temp->prev;
+    }
+    cout << endl;
+}
+
+int main()
+{
+    Node* head = NULL;
+    Node* tail = NULL;
+
+    int val;
+
+    cout << "Enter values (-1 to stop): ";
+
+    while(true)
+    {
+        cin >> val;
+
+        if(val == -1) break;
+
+        insert_at_tail(head, tail, val);
+    }
+
+    cout << "Forward: ";
+    print_forward(head);
+
+    cout << "Backward: ";
+    print_backward(tail);
+
+    return 0;
+}
+```
+🔹 Example
+```cpp
+Input:
+10 20 30 40 -1
+Output:
+Forward: 10 20 30 40
+Backward: 40 30 20 10
+```
+🔹 Visualization
+---
+NULL <- [10] <-> [20] <-> [30] <-> [40] -> NULL
+
+Forward:
+10 → 20 → 30 → 40
+
+Backward:
+40 → 30 → 20 → 10
 
 ---
