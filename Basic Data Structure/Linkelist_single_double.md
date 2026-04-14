@@ -1569,3 +1569,344 @@ Backward:
 40 → 30 → 20 → 10
 
 ---
+# 📘 Doubly Linked List Insert at Any Position (Function) in C++
+
+---
+
+Insert at any position মানে হলো Doubly Linked List-এর **যেকোনো নির্দিষ্ট index-এ নতুন node add করা**।
+
+👉 Example:
+
+```
+10 20 40
+```
+
+Position 2 এ 30 insert করলে:
+
+```
+10 20 30 40
+```
+
+---
+
+## 🔹 Position Rule
+
+* আমরা **0-based index** ব্যবহার করি
+  👉 index শুরু হবে 0 থেকে
+
+---
+
+## 🔹 Insert Function (Clean & Minimal)
+
+```cpp
+void insert_at_any_pos(Node* &head, Node* &tail, int idx, int val)
+{
+    Node* newNode = new Node(val);
+    Node* temp = head;
+
+    for(int i = 1; i < idx ; i++)
+    {
+        temp = temp->next;
+    }
+    newNode->next temp->next
+    temp->next->prev = newNode;
+    temp->next=newNode
+    newNode->prev=temp
+}
+```
+
+---
+
+## 🔹 Example
+
+### Before:
+
+```
+[10] <-> [20] <-> [40]
+```
+
+### Insert 30 at position 2
+
+### After:
+
+```
+[10] <-> [20] <-> [30] <-> [40]
+```
+# 📘 Doubly Linked List Delete Head in C++
+
+---
+
+Delete head মানে হলো Doubly Linked List-এর **প্রথম node (head) remove করা**।
+
+👉 এর ফলে:
+
+* head pointer সামনে move করে
+* পুরানো head delete হয়ে যায়
+
+
+## 🔹 Delete Head Function (Clean & Minimal)
+
+```cpp id="del_head_func"
+void delete_head(Node* &head, Node* &tail)
+{
+    Node* deleteNode = head;
+    head = head->next;
+    delete deleteNode;
+    if(head == NULL){
+        tail = NULL;
+      return;
+    }
+   head->prev = NULL;
+       
+}
+```
+
+---
+
+## 🔹 Example
+
+### Before:
+
+```id="ex_before"
+[10] <-> [20] <-> [30]
+```
+
+### After Delete Head:
+
+```id="ex_after"
+[20] <-> [30]
+```
+
+---
+
+## 🔹 Visualization
+
+```id="viz_del_head"
+Step 1:
+deleteNode = 10
+
+Step 2:
+head = 20
+
+Step 3:
+20.prev = NULL
+
+Final:
+[20] <-> [30]
+```
+
+---
+
+## 🔹 How It Works (Bangla)
+
+* প্রথম node কে temp (deleteNode) এ রাখা হয়
+* head কে next node এ move করা হয়
+* নতুন head থাকলে তার prev NULL করা হয়
+* list empty হলে tail NULL করা হয়
+* শেষে পুরানো node delete করা হয়
+
+---
+# 📘 Doubly Linked List Delete Tail in C++
+
+---
+
+Delete tail মানে হলো Doubly Linked List-এর **শেষ node (tail) remove করা**।
+
+👉 এর ফলে:
+
+* tail pointer এক ধাপ পিছনে যায়
+* পুরানো tail delete হয়ে যায়
+
+
+## 🔹 Delete Tail Function (Clean & Minimal)
+
+```cpp id="del_tail_func"
+void delete_tail(Node* &head, Node* &tail)
+{
+    Node* deleteNode = tail;
+    tail = tail->prev;
+     delete deleteNode;
+     if(tail==NULL){
+       head==NULL;
+         return;
+     }
+    tail->next = NULL; 
+ 
+}
+```
+
+---
+
+## 🔹 Example
+
+### Before:
+
+```id="ex_before_tail"
+[10] <-> [20] <-> [30]
+```
+
+### After Delete Tail:
+
+```id="ex_after_tail"
+[10] <-> [20]
+```
+
+---
+
+## 🔹 Visualization
+
+```id="viz_del_tail"
+Step 1:
+deleteNode = 30
+
+Step 2:
+tail = 20
+
+Step 3:
+20.next = NULL
+
+Final:
+[10] <-> [20]
+```
+
+---
+
+## 🔹 How It Works (Bangla)
+
+* tail node কে temp (deleteNode) এ রাখা হয়
+* tail কে prev node এ move করা হয়
+* নতুন tail-এর next NULL করা হয়
+* শেষে পুরানো node delete করা হয়
+
+---
+# 📘 Doubly Linked List Delete at Any Position in C++
+
+---
+
+Delete at any position মানে হলো Doubly Linked List-এর **যেকোনো নির্দিষ্ট index-এর node remove করা**।
+
+👉 Example:
+
+```id="ex1"
+10 20 30 40
+```
+
+Position 2 delete করলে:
+
+```id="ex2"
+10 20 40
+```
+
+---
+
+## 🔹 Position Rule
+
+* আমরা **0-based index** ব্যবহার করি
+  👉 index শুরু হবে 0 থেকে
+
+---
+
+
+
+## 🔹 Delete Function (Clean & Minimal)
+
+```cpp id="del_any_func"
+void delete_at_any_pos(Node* &head, Node* &tail, int idx)
+{
+    Node* temp = head;
+    for(int i = 1; i < idx; i++){
+        temp = temp->next;
+    }
+    Node* deleteNode = temp->next;
+    temp->next = temp->next->next;
+    temp->next->prev = temp;
+    delete deleteNode;
+}
+```
+
+---
+
+## 🔹 Example
+
+### Before:
+
+```id="ex_before_any"
+[10] <-> [20] <-> [30] <-> [40]
+```
+
+### Delete Position 2
+
+### After:
+
+```id="ex_after_any"
+[10] <-> [20] <-> [40]
+```
+
+---
+
+## 🔹 Visualization
+
+```id="viz_any"
+Step 1:
+temp stops at 20
+
+Step 2:
+deleteNode = 30
+
+Step 3:
+link 20 <-> 40
+
+Final:
+[10] <-> [20] <-> [40]
+```
+
+---
+
+## 🔹 How It Works (Bangla)
+
+* idx = 0 হলে → head delete করা হয়
+* না হলে:
+
+  * idx-1 node পর্যন্ত যাওয়া হয়
+  * target node delete করা হয়
+  * next এবং prev pointer update করা হয়
+* last node হলে → tail update করা হয়
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
